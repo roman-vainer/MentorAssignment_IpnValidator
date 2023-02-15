@@ -1,4 +1,6 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.services;
+
+import ua.shpp.studentsdb.Model.Student;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -11,7 +13,7 @@ public class MyValidator implements ConstraintValidator<IpnValidator, Student> {
     @Override
     public boolean isValid(Student student, ConstraintValidatorContext context) {
         this.student = student;
-        return isDateOfBirthCorrect() && isGenderCorrect() /*&& isCheckingDigitCorrect()*/;
+        return isDateOfBirthCorrect() && isGenderCorrect() && isCheckingDigitCorrect();
     }
 
     private boolean isCheckingDigitCorrect() {

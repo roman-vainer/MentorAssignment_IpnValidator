@@ -1,4 +1,4 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.services;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

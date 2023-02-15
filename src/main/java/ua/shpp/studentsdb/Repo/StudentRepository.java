@@ -1,9 +1,10 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.Repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
+import ua.shpp.studentsdb.Model.Student;
 
 import java.util.Optional;
 

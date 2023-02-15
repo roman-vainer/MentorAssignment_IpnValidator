@@ -1,8 +1,10 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.Config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ua.shpp.studentsdb.Model.Student;
+import ua.shpp.studentsdb.Repo.StudentRepository;
 
 import java.time.LocalDate;
 import java.util.List;

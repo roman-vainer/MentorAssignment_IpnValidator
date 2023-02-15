@@ -1,4 +1,4 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.Controllers;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;

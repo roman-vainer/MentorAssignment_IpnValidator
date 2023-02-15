@@ -1,14 +1,16 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.shpp.studentsdb.Model.Student;
+import ua.shpp.studentsdb.services.StudentService;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("Api/v1/student")
+@RequestMapping("Api/student")
 public class StudentController {
     private final StudentService studentService;
 
@@ -24,6 +26,7 @@ public class StudentController {
 
     @PostMapping
     public void addStudents(@Valid @RequestBody Student student) {
+
         studentService.addNewStudent(student);
     }
 

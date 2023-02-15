@@ -1,9 +1,10 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.shpp.studentsdb.services.IpnValidator;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
+
 
 @Entity
 @Table

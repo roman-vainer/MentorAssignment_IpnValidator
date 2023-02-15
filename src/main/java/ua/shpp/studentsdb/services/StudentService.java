@@ -1,7 +1,9 @@
-package ua.shpp.studentsdb;
+package ua.shpp.studentsdb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.shpp.studentsdb.Model.Student;
+import ua.shpp.studentsdb.Repo.StudentRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
