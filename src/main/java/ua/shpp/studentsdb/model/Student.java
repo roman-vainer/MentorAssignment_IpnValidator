@@ -9,7 +9,9 @@ import ua.shpp.studentsdb.services.IpnValidator;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 
@@ -26,7 +28,6 @@ public class Student {
     @NotNull
     @Past(message = "Date of birth must be in past")
     private LocalDate dob;
-    @Size(min = 4)
     @NotEmpty(message = "Gender must not be empty")
     private String gender;
     @Id

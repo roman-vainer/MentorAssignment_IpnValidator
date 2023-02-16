@@ -1,18 +1,15 @@
-/*
 package ua.shpp.studentsdb.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import ua.shpp.studentsdb.controllers.MyErrorAdviceController;
 import ua.shpp.studentsdb.model.Student;
 
 import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MyValidatorTest {
     MyValidator validator = new MyValidator();
@@ -51,4 +48,4 @@ class MyValidatorTest {
         validStudent.setIpn(2918805151L);
         assertFalse(validator.isValid(validStudent, context));
     }
-}*/
+}
