@@ -1,8 +1,8 @@
-package ua.shpp.studentsdb.Controllers;
+package ua.shpp.studentsdb.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ua.shpp.studentsdb.Model.Student;
+import ua.shpp.studentsdb.model.Student;
 import ua.shpp.studentsdb.services.StudentService;
 
 import javax.validation.Valid;
@@ -41,7 +41,8 @@ public class StudentController {
             @PathVariable("studentId") Long studentId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) LocalDate dob,
-            @RequestParam(required = false) String gender) {
+            @RequestParam(required = false) String gender)
+    {
         studentService.updateStudent(studentId, name, dob, gender);
     }
 

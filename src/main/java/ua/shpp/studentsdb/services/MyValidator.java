@@ -1,6 +1,6 @@
 package ua.shpp.studentsdb.services;
 
-import ua.shpp.studentsdb.Model.Student;
+import ua.shpp.studentsdb.model.Student;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -13,10 +13,15 @@ public class MyValidator implements ConstraintValidator<IpnValidator, Student> {
     @Override
     public boolean isValid(Student student, ConstraintValidatorContext context) {
         this.student = student;
-        return isDateOfBirthCorrect() && isGenderCorrect() && isCheckingDigitCorrect();
+        return isIPNSizeCorrect() && isDateOfBirthCorrect() && isGenderCorrect() && isCheckingDigitCorrect();
+    }
+
+    private boolean isIPNSizeCorrect() {
+        return student.getIpn() >= 1000000000L && student.getIpn() <= 9999999999L;
     }
 
     private boolean isCheckingDigitCorrect() {
+
         int[] formula = {-1, 5, 7, 9, 4, 6, 10, 5, 7};
         int expectedDigit = 0;
         for (int i = 0; i < 9; i++) {

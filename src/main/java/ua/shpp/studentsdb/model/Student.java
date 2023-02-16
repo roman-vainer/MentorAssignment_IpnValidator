@@ -1,4 +1,4 @@
-package ua.shpp.studentsdb.Model;
+package ua.shpp.studentsdb.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import ua.shpp.studentsdb.services.IpnValidator;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 
@@ -22,10 +21,13 @@ import java.time.LocalDate;
 @Setter
 @IpnValidator
 public class Student {
-    @NotEmpty(message = "{Name must not be empty}")
+    @NotEmpty(message = "Name must not be empty")
     private String name;
-    @Past(message = "{Date of birth must be in past}")
+    @NotNull
+    @Past(message = "Date of birth must be in past")
     private LocalDate dob;
+    @Size(min = 4)
+    @NotEmpty(message = "Gender must not be empty")
     private String gender;
     @Id
     private Long ipn;
@@ -40,3 +42,5 @@ public class Student {
                 '}';
     }
 }
+
+
