@@ -2,8 +2,8 @@ package ua.shpp.studentsdb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.shpp.studentsdb.Model.Student;
-import ua.shpp.studentsdb.Repo.StudentRepository;
+import ua.shpp.studentsdb.model.Student;
+import ua.shpp.studentsdb.repo.StudentRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -44,7 +44,7 @@ public class StudentService {
         Student student = repository.findById(studentId)
                 .orElseThrow(() -> new IllegalStateException("student with id " + studentId + " does not exist"));
 
-        if (!Objects.equals(student.getName(), name)) {
+        if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)) {
             student.setName(name);
         }
         if (dob != null && dob.isBefore(LocalDate.now()) && !dob.isEqual(student.getDob())) {
@@ -53,7 +53,5 @@ public class StudentService {
         if (gender != null && gender.length() > 0 && !Objects.equals(student.getGender(), gender)) {
             student.setGender(gender);
         }
-
-
     }
 }

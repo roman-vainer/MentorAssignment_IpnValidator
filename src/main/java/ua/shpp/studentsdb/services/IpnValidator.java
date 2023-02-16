@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Documented
 public @interface IpnValidator {
-    String message() default "{IPN is not valid}";
+    String message() default "IPN is not valid";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
