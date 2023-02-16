@@ -26,7 +26,6 @@ public class Student {
     @NotNull
     @Past(message = "Date of birth must be in past")
     private LocalDate dob;
-    @Size(min = 4)
     @NotEmpty(message = "Gender must not be empty")
     private String gender;
     @Id
