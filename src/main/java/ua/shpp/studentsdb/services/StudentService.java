@@ -2,13 +2,13 @@ package ua.shpp.studentsdb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.shpp.studentsdb.exeption.ApiRequestException;
 import ua.shpp.studentsdb.model.Student;
 import ua.shpp.studentsdb.repo.StudentRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -25,16 +25,17 @@ public class StudentService {
     }
 
     public void addNewStudent(Student student) {
-        Optional<Student> studentIpn = repository.findById(student.getIpn());
-        if (studentIpn.isPresent()) {
-            throw new IllegalStateException("Ipn already exists");
+        Long ipn = student.getIpn();
+        Optional<Student> optionalStudent = repository.findById(ipn);
+        if (optionalStudent.isPresent()) {
+            throw new ApiRequestException("Ipn " + ipn + " already exists");
         }
         repository.save(student);
     }
 
     public void deleteStudent(Long studentId) {
         if (!repository.existsById(studentId)) {
-            throw new IllegalStateException("student with id " + studentId + " does not exist");
+            throw new ApiRequestException("student with id " + studentId + " does not exist");
         }
         repository.deleteById(studentId);
     }
@@ -42,15 +43,26 @@ public class StudentService {
     @Transactional
     public void updateStudent(Long studentId, String name, LocalDate dob, String gender) {
         Student student = repository.findById(studentId)
-                .orElseThrow(() -> new IllegalStateException("student with id " + studentId + " does not exist"));
+                .orElseThrow(() -> new ApiRequestException("student with id " + studentId + " does not exist"));
 
-        if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)) {
+        if (name != null) {
+            if (name.length() == 0) {
+                throw new ApiRequestException("Name must not be empty");
+            }
             student.setName(name);
         }
-        if (dob != null && dob.isBefore(LocalDate.now()) && !dob.isEqual(student.getDob())) {
+
+        if (dob != null) {
+            if (!dob.isBefore(LocalDate.now())) {
+                throw new ApiRequestException("Date of birth must be in past");
+            }
             student.setDob(dob);
         }
-        if (gender != null && gender.length() > 0 && !Objects.equals(student.getGender(), gender)) {
+
+        if (gender != null) {
+            if (!("male".equals(gender) || "female".equals(gender))) {
+                throw new ApiRequestException("Gender must be equals 'male' or 'female'");
+            }
             student.setGender(gender);
         }
     }

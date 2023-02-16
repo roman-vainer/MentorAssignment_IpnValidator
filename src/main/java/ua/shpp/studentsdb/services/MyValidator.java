@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 
 public class MyValidator implements ConstraintValidator<IpnValidator, Student> {
     Student student;
+
     @Override
     public boolean isValid(Student student, ConstraintValidatorContext context) {
         this.student = student;
@@ -21,7 +22,6 @@ public class MyValidator implements ConstraintValidator<IpnValidator, Student> {
     }
 
     private boolean isCheckingDigitCorrect() {
-
         int[] formula = {-1, 5, 7, 9, 4, 6, 10, 5, 7};
         int expectedDigit = 0;
         for (int i = 0; i < 9; i++) {
